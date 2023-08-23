@@ -1,0 +1,21 @@
+{
+    "name": "karrakoliko/seance-reservation-php",
+    "autoload": {
+        "psr-4": {
+            "Karrakoliko\\SeanceReservation\\": "src/",
+            "Karrakoliko\\SeanceReservation\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "karrakoliko",
+            "email": "github-public@karrakoliko.fastmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.3"
+    }
+}
