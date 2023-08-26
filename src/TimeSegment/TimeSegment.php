@@ -16,7 +16,7 @@ class TimeSegment implements TimeSegmentInterface
     public function __construct(DateTimeImmutable $startTime, int $durationSec)
     {
 
-        if ($durationSec < 0) {
+        if ($durationSec < 1) {
             throw new InvalidArgumentException("durationSec must be positive integer number");
         }
 

@@ -63,7 +63,8 @@ class PartnerSchedule implements PartnerScheduleInterface
                 $secUntilWorkDayEnd = $workDayTimeSegment->getEndTimeStamp() - $prevEndTimeStamp;
 
                 yield new TimeSegment(
-                    new \DateTimeImmutable('@' . $prevEndTimeStamp), $secUntilWorkDayEnd);
+                    new \DateTimeImmutable('@' . $prevEndTimeStamp), $secUntilWorkDayEnd
+                );
                 break;
 
             } else {
@@ -74,17 +75,21 @@ class PartnerSchedule implements PartnerScheduleInterface
                         $occupiedSegmentsExhausted = true;
                         break;
                     }
+
                     $freeSegmentStart = new \DateTimeImmutable('@' . $prevEndTimeStamp);
                     $freeSegmentDurationSec = $occupiedSegment->getStartTimeStamp() - $freeSegmentStart->getTimestamp();
 
-                    $freeSegment = new TimeSegment(
-                        $freeSegmentStart,
-                        $freeSegmentDurationSec
-                    );
+                    if ($freeSegmentDurationSec > 0) {
+
+                        $freeSegment = new TimeSegment(
+                            $freeSegmentStart,
+                            $freeSegmentDurationSec
+                        );
+
+                        yield $freeSegment;
+                    }
 
                     $prevEndTimeStamp = $occupiedSegment->getEndTimeStamp();
-
-                    yield $freeSegment;
 
                     if ($k === array_key_last($occupied)) {
                         $occupiedSegmentsExhausted = true;
