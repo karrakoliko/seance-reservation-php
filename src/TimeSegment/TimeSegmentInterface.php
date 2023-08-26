@@ -1,6 +1,6 @@
 <?php
 
-namespace Karrakoliko\SeanceReservation;
+namespace Karrakoliko\SeanceReservation\TimeSegment;
 
 interface TimeSegmentInterface
 {
@@ -10,5 +10,9 @@ interface TimeSegmentInterface
     public function getStartTimeStamp(): int;
 
     public function getEndTimeStamp(): int;
+
+    public function includes(TimeSegmentInterface $timeSegment): bool;
+
+    public function toHumanReadableString(): string;
 
 }
