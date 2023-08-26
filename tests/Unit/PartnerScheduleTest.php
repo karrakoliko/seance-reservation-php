@@ -39,6 +39,14 @@ class PartnerScheduleTest extends TestCase
                     ['occupied_start_hours' => 11, 'occupied_total_hours' => 1],
                 ],
                 [[8, 11], [12, 18]]
+            ],
+            [
+                '2023-08-26T00:00:00+00:00',
+                ['wd_start' => 8, 'wd_end' => 20], // wd = Work Day
+                [
+                    // no occupied time
+                ],
+                [[8, 20]]
             ]
         ];
     }

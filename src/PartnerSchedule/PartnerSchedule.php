@@ -54,7 +54,7 @@ class PartnerSchedule implements PartnerScheduleInterface
 
         $workDayTimeSegment = $this->createWorkDayTimeSegmentForDate($date);
 
-        $prevEndTimeStamp = null;
+        $prevEndTimeStamp = $workDayTimeSegment->getStartTimeStamp();
         $occupiedSegmentsExhausted = !count($occupied);
 
         while ($prevEndTimeStamp < $workDayTimeSegment->getEndTimeStamp()) {
@@ -74,10 +74,6 @@ class PartnerSchedule implements PartnerScheduleInterface
                     if (!$workDayTimeSegment->includes($occupiedSegment)) {
                         $occupiedSegmentsExhausted = true;
                         break;
-                    }
-
-                    if (($prevEndTimeStamp === null)) {
-                        $prevEndTimeStamp = $workDayTimeSegment->getStartTimeStamp();
                     }
 
                     $freeSegmentStart = (new DateTime())->setTimestamp($prevEndTimeStamp);
