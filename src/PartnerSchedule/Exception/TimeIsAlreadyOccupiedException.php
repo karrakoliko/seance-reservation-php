@@ -2,7 +2,9 @@
 
 namespace Karrakoliko\SeanceReservation\PartnerSchedule\Exception;
 
-class TimeIsAlreadyOccupiedException extends \RuntimeException
+use RuntimeException;
+
+class TimeIsAlreadyOccupiedException extends RuntimeException
 {
 
 }

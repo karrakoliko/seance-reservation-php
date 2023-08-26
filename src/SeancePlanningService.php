@@ -2,6 +2,8 @@
 
 namespace Karrakoliko\SeanceReservation;
 
+use DateTime;
+use DateTimeImmutable;
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerScheduleInterface;
 use Karrakoliko\SeanceReservation\Slot\Slot;
 
@@ -9,7 +11,7 @@ class SeancePlanningService
 {
 
     public function getAvailableSlots(
-        \DateTimeImmutable       $date,
+        DateTimeImmutable       $date,
         int                      $seanceDurationSec,
         PartnerScheduleInterface $partnerSchedule,
         int                      $intervalSec
@@ -43,8 +45,8 @@ class SeancePlanningService
 
                 $slotEndTimeStamp = $slotStartTimeStamp + $seanceDurationSec;
 
-                $slotEndDt = (new \DateTime())->setTimestamp($slotEndTimeStamp);
-                $slotStartDt = (new \DateTime())->setTimestamp($slotStartTimeStamp);
+                $slotEndDt = (new DateTime('@' . $slotEndTimeStamp));
+                $slotStartDt = (new DateTime('@' . $slotStartTimeStamp));
 
                 if ($slotEndTimeStamp > $segment->getEndTimeStamp()) {
                     break;

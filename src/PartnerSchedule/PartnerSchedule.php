@@ -2,7 +2,6 @@
 
 namespace Karrakoliko\SeanceReservation\PartnerSchedule;
 
-use DateTime;
 use DateTimeImmutable;
 use Karrakoliko\SeanceReservation\PartnerSchedule\Exception\TimeIsAlreadyOccupiedException;
 use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
@@ -61,10 +60,10 @@ class PartnerSchedule implements PartnerScheduleInterface
 
             if ($occupiedSegmentsExhausted) {
 
-                $lastEndDateTime = (new DateTime())->setTimestamp($prevEndTimeStamp);
                 $secUntilWorkDayEnd = $workDayTimeSegment->getEndTimeStamp() - $prevEndTimeStamp;
 
-                yield new TimeSegment(DateTimeImmutable::createFromMutable($lastEndDateTime), $secUntilWorkDayEnd);
+                yield new TimeSegment(
+                    new \DateTimeImmutable('@' . $prevEndTimeStamp), $secUntilWorkDayEnd);
                 break;
 
             } else {
@@ -75,11 +74,13 @@ class PartnerSchedule implements PartnerScheduleInterface
                         $occupiedSegmentsExhausted = true;
                         break;
                     }
-
-                    $freeSegmentStart = (new DateTime())->setTimestamp($prevEndTimeStamp);
+                    $freeSegmentStart = new \DateTimeImmutable('@' . $prevEndTimeStamp);
                     $freeSegmentDurationSec = $occupiedSegment->getStartTimeStamp() - $freeSegmentStart->getTimestamp();
 
-                    $freeSegment = new TimeSegment(DateTimeImmutable::createFromMutable($freeSegmentStart), $freeSegmentDurationSec);
+                    $freeSegment = new TimeSegment(
+                        $freeSegmentStart,
+                        $freeSegmentDurationSec
+                    );
 
                     $prevEndTimeStamp = $occupiedSegment->getEndTimeStamp();
 

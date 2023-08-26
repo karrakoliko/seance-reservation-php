@@ -28,8 +28,8 @@ class TimeSegment implements TimeSegmentInterface
     protected function calcEndTime(): DateTimeImmutable
     {
 
-        $dateTime = (new DateTime())->setTimestamp($this->getStartTimeStamp() + $this->durationSec);
-        return DateTimeImmutable::createFromMutable($dateTime);
+        $endTimeStamp = $this->getStartTimeStamp() + $this->durationSec;
+        return new DateTimeImmutable('@' . $endTimeStamp);
     }
 
     public function getStartTimeStamp(): int
