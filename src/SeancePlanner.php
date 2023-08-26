@@ -7,20 +7,26 @@ use DateTimeImmutable;
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerScheduleInterface;
 use Karrakoliko\SeanceReservation\Slot\Slot;
 
-class SeancePlanningService
+class SeancePlanner
 {
-
+    /**
+     * @param DateTimeImmutable $date
+     * @param int $seanceDurationSec
+     * @param PartnerScheduleInterface $partnerSchedule
+     * @param int $intervalSec
+     * @return iterable|Slot[]
+     * @throws \Exception
+     * @noinspection PhpDocSignatureInspection
+     */
     public function getAvailableSlots(
         DateTimeImmutable        $date,
         int                      $seanceDurationSec,
         PartnerScheduleInterface $partnerSchedule,
         int                      $intervalSec
-    )
+    ): iterable
     {
 
         $freeSegments = iterator_to_array($partnerSchedule->getFreeTimeForDate($date));
-
-        $partnerWorkTime = $partnerSchedule->createWorkDayTimeSegmentForDate($date);
 
         foreach ($freeSegments as $segment) {
 
@@ -48,10 +54,10 @@ class SeancePlanningService
                 if (isset($_ENV['Karrakoliko/SeanceReservation/env'])) {
 
                     if (in_array($_ENV['Karrakoliko/SeanceReservation/env'], ['test', 'debug'])) {
-                        // convenient vars for debugging
+                        // convenient vars for debugging, not used in prod
 
-                        $slotEndDt = (new DateTime('@' . $slotEndTimeStamp));
-                        $slotStartDt = (new DateTime('@' . $slotStartTimeStamp));
+                        $slotEndDt = new DateTime('@' . $slotEndTimeStamp);
+                        $slotStartDt = new DateTime('@' . $slotStartTimeStamp);
                     }
                 }
 

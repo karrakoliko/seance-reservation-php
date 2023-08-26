@@ -3,11 +3,11 @@
 namespace Karrakoliko\SeanceReservation\Tests\Unit;
 
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerSchedule;
-use Karrakoliko\SeanceReservation\SeancePlanningService;
+use Karrakoliko\SeanceReservation\SeancePlanner;
 use Karrakoliko\SeanceReservation\Slot\Slot;
 use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
 
-class SeancePlanningServiceTest extends TestCase
+class SeancePlannerTest extends TestCase
 {
     public static function getAvailableSlotsProvider()
     {
@@ -84,7 +84,7 @@ class SeancePlanningServiceTest extends TestCase
         array $occupiedHours = []
     )
     {
-        $planner = new SeancePlanningService();
+        $planner = new SeancePlanner();
 
         $date = new \DateTimeImmutable();
 

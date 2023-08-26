@@ -83,6 +83,6 @@ class TimeSegment implements TimeSegmentInterface
         $to = $this->endTime->format('H:i');
 
         $date = $this->startTime->format('d-M-y');
-        return sprintf("%s - %s at %s", $from, $to, $date);
+        return sprintf("%s - %s (%s)", $from, $to, $date);
     }
 }
