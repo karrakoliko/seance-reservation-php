@@ -16,6 +16,7 @@ readonly class Slot
 
     public static function createFromTimeStamp(int $timestamp): self
     {
+        /** @noinspection PhpUnhandledExceptionInspection */
         return new self(new DateTimeImmutable('@' . $timestamp));
     }
 

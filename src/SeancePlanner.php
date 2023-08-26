@@ -4,6 +4,7 @@ namespace Karrakoliko\SeanceReservation;
 
 use DateTime;
 use DateTimeImmutable;
+use Exception;
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerScheduleInterface;
 use Karrakoliko\SeanceReservation\Slot\Slot;
 
@@ -15,7 +16,7 @@ class SeancePlanner
      * @param PartnerScheduleInterface $partnerSchedule
      * @param int $intervalSec
      * @return iterable|Slot[]
-     * @throws \Exception
+     * @throws Exception
      * @noinspection PhpDocSignatureInspection
      */
     public function getAvailableSlots(
@@ -56,7 +57,9 @@ class SeancePlanner
                     if (in_array($_ENV['Karrakoliko/SeanceReservation/env'], ['test', 'debug'])) {
                         // convenient vars for debugging, not used in prod
 
+                        /** @noinspection PhpUnusedLocalVariableInspection */
                         $slotEndDt = new DateTime('@' . $slotEndTimeStamp);
+                        /** @noinspection PhpUnusedLocalVariableInspection */
                         $slotStartDt = new DateTime('@' . $slotStartTimeStamp);
                     }
                 }

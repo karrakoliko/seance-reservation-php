@@ -6,12 +6,12 @@ use DateTime;
 use DateTimeImmutable;
 use InvalidArgumentException;
 
-class TimeSegment implements TimeSegmentInterface
+readonly class TimeSegment implements TimeSegmentInterface
 {
-    private readonly DateTimeImmutable $startTime;
-    private readonly int $durationSec;
+    private DateTimeImmutable $startTime;
+    private int $durationSec;
 
-    private readonly DateTimeImmutable $endTime;
+    private DateTimeImmutable $endTime;
 
     public function __construct(DateTimeImmutable $startTime, int $durationSec)
     {
@@ -29,6 +29,7 @@ class TimeSegment implements TimeSegmentInterface
     {
 
         $endTimeStamp = $this->getStartTimeStamp() + $this->durationSec;
+        /** @noinspection PhpUnhandledExceptionInspection */
         return new DateTimeImmutable('@' . $endTimeStamp);
     }
 
@@ -37,7 +38,7 @@ class TimeSegment implements TimeSegmentInterface
         return $this->startTime->getTimestamp();
     }
 
-    public static function createWithTime(DateTimeImmutable $date, int $hours, int $minutes, int $durationSec)
+    public static function createWithTime(DateTimeImmutable $date, int $hours, int $minutes, int $durationSec): TimeSegment
     {
         $dt = DateTime::createFromImmutable($date);
         $dt->setTime($hours, $minutes);
@@ -46,7 +47,7 @@ class TimeSegment implements TimeSegmentInterface
 
     }
 
-    public static function createWithHoursFromTo(DateTimeImmutable $date, int $fromHours, int $toHours)
+    public static function createWithHoursFromTo(DateTimeImmutable $date, int $fromHours, int $toHours): TimeSegment
     {
         $dt = DateTime::createFromImmutable($date);
         $dt->setTime($fromHours, 0);
@@ -72,6 +73,7 @@ class TimeSegment implements TimeSegmentInterface
         return $this->endTime->getTimestamp();
     }
 
+    /** @noinspection PhpUnused */
     public function getDurationSec(): int
     {
         return $this->durationSec;

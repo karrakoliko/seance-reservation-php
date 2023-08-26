@@ -9,7 +9,7 @@ use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
 class TimeSegmentTest extends TestCase
 {
 
-    public static function includesProvider()
+    public static function includesProvider(): array
     {
         return [
             [

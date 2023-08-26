@@ -2,6 +2,8 @@
 
 namespace Karrakoliko\SeanceReservation\Tests\Unit;
 
+use DateTimeImmutable;
+use Exception;
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerSchedule;
 use Karrakoliko\SeanceReservation\SeancePlanner;
 use Karrakoliko\SeanceReservation\Slot\Slot;
@@ -9,7 +11,7 @@ use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
 
 class SeancePlannerTest extends TestCase
 {
-    public static function getAvailableSlotsProvider()
+    public static function getAvailableSlotsProvider(): array
     {
         return [
             [
@@ -76,6 +78,7 @@ class SeancePlannerTest extends TestCase
     /**
      * @dataProvider getAvailableSlotsProvider
      * @return void
+     * @throws Exception
      */
     public function testGetAvailableSlots(
         int   $seanceDurationMin,
@@ -86,7 +89,7 @@ class SeancePlannerTest extends TestCase
     {
         $planner = new SeancePlanner();
 
-        $date = new \DateTimeImmutable();
+        $date = new DateTimeImmutable();
 
         $partnerSchedule = new PartnerSchedule(
             $partnerWorDayHours['wd_start_hours'],

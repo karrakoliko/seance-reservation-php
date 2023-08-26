@@ -1,17 +1,16 @@
 <?php
 
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerScheduleInterface;
-use Karrakoliko\SeanceReservation\TimeSegment\TimeSegmentInterface;
 
-function showSlots(iterable $slots, DateTimeImmutable $date, PartnerScheduleInterface $partnerSchedule)
+function showSlots(iterable $slots, DateTimeImmutable $date, PartnerScheduleInterface $partnerSchedule): void
 {
     echo sprintf("Режим работы партнёра: %s", $partnerSchedule->createWorkDayTimeSegmentForDate($date)->toHumanReadableString());
     echo PHP_EOL;
 
-    echo sprintf("Занятое время:");
+    echo "Занятое время:";
     echo PHP_EOL;
 
-    foreach ($partnerSchedule->getOccupiedTimeSegmentsForDate($date) as $occupiedSegment){
+    foreach ($partnerSchedule->getOccupiedTimeSegmentsForDate($date) as $occupiedSegment) {
 
         echo sprintf('* %s', $occupiedSegment->toHumanReadableString());
         echo PHP_EOL;

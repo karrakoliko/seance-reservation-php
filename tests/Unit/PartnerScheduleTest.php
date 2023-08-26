@@ -4,6 +4,7 @@ namespace Karrakoliko\SeanceReservation\Tests\Unit;
 
 use DateTimeImmutable;
 use DateTimeInterface;
+use Exception;
 use Karrakoliko\SeanceReservation\PartnerSchedule\Exception\TimeIsAlreadyOccupiedException;
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerSchedule;
 use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
@@ -11,7 +12,7 @@ use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
 class PartnerScheduleTest extends TestCase
 {
 
-    public static function getFreeTimeForDateProvider()
+    public static function getFreeTimeForDateProvider(): array
     {
         return [
             [
@@ -65,6 +66,7 @@ class PartnerScheduleTest extends TestCase
     /**
      * @dataProvider getFreeTimeForDateProvider
      * @return void
+     * @throws Exception
      */
     public function testGetFreeTimeForDate(string $dateISO, array $workHours, array $occupiedHours, array $freeHours)
     {

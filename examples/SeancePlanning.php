@@ -42,6 +42,7 @@ $partnerSchedule->occupyTime(
 
 $planner = new SeancePlanner();
 
+/** @noinspection PhpUnhandledExceptionInspection */
 $slots = $planner->getAvailableSlots(
     $date,
     $seanceDuration,
@@ -49,5 +50,5 @@ $slots = $planner->getAvailableSlots(
     $seanceInterval
 );
 
-showSlots($slots, $date,$partnerSchedule);
+showSlots($slots, $date, $partnerSchedule);
 

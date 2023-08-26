@@ -5,6 +5,7 @@ namespace Karrakoliko\SeanceReservation\TimeSegment;
 interface TimeSegmentInterface
 {
 
+    /** @noinspection PhpUnused */
     public function getDurationSec(): int;
 
     public function getStartTimeStamp(): int;
