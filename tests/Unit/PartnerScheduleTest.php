@@ -7,7 +7,6 @@ use DateTimeInterface;
 use Karrakoliko\SeanceReservation\PartnerSchedule\Exception\TimeIsAlreadyOccupiedException;
 use Karrakoliko\SeanceReservation\PartnerSchedule\PartnerSchedule;
 use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
-use PHPUnit\Framework\TestCase;
 
 class PartnerScheduleTest extends TestCase
 {

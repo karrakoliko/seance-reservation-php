@@ -11,7 +11,7 @@ class SeancePlanningService
 {
 
     public function getAvailableSlots(
-        DateTimeImmutable       $date,
+        DateTimeImmutable        $date,
         int                      $seanceDurationSec,
         PartnerScheduleInterface $partnerSchedule,
         int                      $intervalSec
@@ -45,8 +45,15 @@ class SeancePlanningService
 
                 $slotEndTimeStamp = $slotStartTimeStamp + $seanceDurationSec;
 
-                $slotEndDt = (new DateTime('@' . $slotEndTimeStamp));
-                $slotStartDt = (new DateTime('@' . $slotStartTimeStamp));
+                if (isset($_ENV['Karrakoliko/SeanceReservation/env'])) {
+
+                    if (in_array($_ENV['Karrakoliko/SeanceReservation/env'], ['test', 'debug'])) {
+                        // convenient vars for debugging
+
+                        $slotEndDt = (new DateTime('@' . $slotEndTimeStamp));
+                        $slotStartDt = (new DateTime('@' . $slotStartTimeStamp));
+                    }
+                }
 
                 if ($slotEndTimeStamp > $segment->getEndTimeStamp()) {
                     break;

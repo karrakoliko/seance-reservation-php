@@ -5,7 +5,6 @@ namespace Karrakoliko\SeanceReservation\Tests\Unit;
 use DateTimeImmutable;
 use InvalidArgumentException;
 use Karrakoliko\SeanceReservation\TimeSegment\TimeSegment;
-use PHPUnit\Framework\TestCase;
 
 class TimeSegmentTest extends TestCase
 {

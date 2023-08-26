@@ -2,8 +2,6 @@
 
 namespace Karrakoliko\SeanceReservation\Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
-
 class DummyUnitTest extends TestCase
 {
     /**
