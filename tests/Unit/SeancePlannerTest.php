@@ -114,7 +114,7 @@ class SeancePlannerTest extends TestCase
             return $slot->getDateTime()->format('H:i');
         }, $slotsArr);
 
-        $this->assertEquals($slotsArr, $slotsExpected);
+        $this->assertEquals($slotsExpected, $slotsArr);
 
     }
 }
